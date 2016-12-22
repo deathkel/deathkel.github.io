@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP," />
+  <meta name="keywords" content="PHP,SWOOLE,优化," />
 
 
 
@@ -57,19 +57,24 @@
 
 
 
-<meta name="description" content="1 添加mirror12$    rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm$    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
-2 yum 安装 php7123456$    yum install php70w$">
+<meta name="description" content="1 Laravel的速度瓶颈在哪？1.1 已有的一些优化方法1.1.1 laravel官方提供了一些优化laravel的优化方法123$   php artisan optimize$   php artisan config:cache$   php artisan route:cache
+1.1.2 使用opcache加速
+PHP是个解释型语言执行的时候先得把程序读进来，由Zend引擎编译成o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php7快速安装">
-<meta property="og:url" content="http://yoursite.com/2016/12/15/php7快速安装/index.html">
+<meta property="og:title" content="swoole-speed-up-laravel">
+<meta property="og:url" content="http://yoursite.com/2016/12/23/swoole-speed-up-laravel/index.html">
 <meta property="og:site_name" content="老K的博客">
-<meta property="og:description" content="1 添加mirror12$    rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm$    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
-2 yum 安装 php7123456$    yum install php70w$">
-<meta property="og:updated_time" content="2016-12-22T16:43:47.147Z">
+<meta property="og:description" content="1 Laravel的速度瓶颈在哪？1.1 已有的一些优化方法1.1.1 laravel官方提供了一些优化laravel的优化方法123$   php artisan optimize$   php artisan config:cache$   php artisan route:cache
+1.1.2 使用opcache加速
+PHP是个解释型语言执行的时候先得把程序读进来，由Zend引擎编译成o">
+<meta property="og:image" content="http://yoursite.com/2016/12/23/swoole-speed-up-laravel/img1.png">
+<meta property="og:image" content="http://yoursite.com/2016/12/23/swoole-speed-up-laravel/img2.png">
+<meta property="og:updated_time" content="2016-12-22T16:43:13.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php7快速安装">
-<meta name="twitter:description" content="1 添加mirror12$    rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm$    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
-2 yum 安装 php7123456$    yum install php70w$">
+<meta name="twitter:title" content="swoole-speed-up-laravel">
+<meta name="twitter:description" content="1 Laravel的速度瓶颈在哪？1.1 已有的一些优化方法1.1.1 laravel官方提供了一些优化laravel的优化方法123$   php artisan optimize$   php artisan config:cache$   php artisan route:cache
+1.1.2 使用opcache加速
+PHP是个解释型语言执行的时候先得把程序读进来，由Zend引擎编译成o">
 
 
 
@@ -87,7 +92,7 @@
   };
 </script>
 
-  <title> php7快速安装 | 老K的博客 </title>
+  <title> swoole-speed-up-laravel | 老K的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -227,7 +232,7 @@
             
             
               
-                php7快速安装
+                swoole-speed-up-laravel
               
             
           </h1>
@@ -239,8 +244,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T00:47:53+08:00" content="2016-12-15">
-              2016-12-15
+            <time itemprop="dateCreated" datetime="2016-12-23T00:07:28+08:00" content="2016-12-23">
+              2016-12-23
             </time>
           </span>
 
@@ -250,8 +255,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/15/php7快速安装/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/php7快速安装/" itemprop="commentsCount"></span>
+                <a href="/2016/12/23/swoole-speed-up-laravel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/23/swoole-speed-up-laravel/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -272,11 +277,26 @@
       
 
       
-        <h2 id="1__u6DFB_u52A0mirror"><a href="#1__u6DFB_u52A0mirror" class="headerlink" title="1 添加mirror"></a>1 添加mirror</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$    rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-<span class="number">6</span>.noarch.rpm</span><br><span class="line">$    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm</span><br></pre></td></tr></table></figure>
-<h2 id="2_yum__u5B89_u88C5_php7"><a href="#2_yum__u5B89_u88C5_php7" class="headerlink" title="2 yum 安装 php7"></a>2 yum 安装 php7</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$    yum install php70w</span><br><span class="line">$    yum install php70w-common</span><br><span class="line">$    yum install php70w-fpm</span><br><span class="line">$    yum install php70w-pdo</span><br><span class="line">$    yum install php70w-xml</span><br><span class="line">$    yum install php70w-mbstring</span><br></pre></td></tr></table></figure>
-<p>（因为我跑的是laravel，所以需要以上的一些扩展，其它请自行安装，如果需要其他扩展，请使用yum search php70w）<br>安装完后运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$    service php-fpm restart</span><br><span class="line">$    service nginx restart</span><br></pre></td></tr></table></figure>
-<p>错误日志请查看/var/log/php-fpm/www-error.log</p>
+        <h3 id="1_Laravel_u7684_u901F_u5EA6_u74F6_u9888_u5728_u54EA_uFF1F"><a href="#1_Laravel_u7684_u901F_u5EA6_u74F6_u9888_u5728_u54EA_uFF1F" class="headerlink" title="1 Laravel的速度瓶颈在哪？"></a>1 Laravel的速度瓶颈在哪？</h3><h4 id="1-1__u5DF2_u6709_u7684_u4E00_u4E9B_u4F18_u5316_u65B9_u6CD5"><a href="#1-1__u5DF2_u6709_u7684_u4E00_u4E9B_u4F18_u5316_u65B9_u6CD5" class="headerlink" title="1.1 已有的一些优化方法"></a>1.1 已有的一些优化方法</h4><p>1.1.1 laravel官方提供了一些优化laravel的优化方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$   php artisan optimize</span><br><span class="line">$   php artisan config:cache</span><br><span class="line">$   php artisan route:cache</span><br></pre></td></tr></table></figure></p>
+<p>1.1.2 使用opcache加速</p>
+<p>PHP是个解释型语言执行的时候先得把程序读进来，由Zend引擎编译成opcode。最后Zend虚拟机顺次执行这些opcode完成操作。opcache起到的作用就是缓存opcode，从而减少编译的时间，减少CPU密集。</p>
+<p>1.1.3 使用PHP7.1，不要问我为什么</p>
+<h4 id="1-2__u78C1_u76D8IO_u4E0A_u7684_u74F6_u9888"><a href="#1-2__u78C1_u76D8IO_u4E0A_u7684_u74F6_u9888" class="headerlink" title="1.2 磁盘IO上的瓶颈"></a>1.2 磁盘IO上的瓶颈</h4><p>Laravel本身启动需要的文件就很多，外加其出了名的生态环境好，开发中我们会很多很多现有的轮子，使得一次启动的磁盘IO特别高（就是要加载很多文件嘛），虽然官方的php artisan optimize方法优化了文件的加载，但并没有实际解决IO上的问题。<br>知道了问题那就很容易解决了，只要不要每次启动都重新加载就好了，下面轮到Swoole上场啦。</p>
+<hr>
+<h3 id="2_Swoole"><a href="#2_Swoole" class="headerlink" title="2 Swoole"></a>2 Swoole</h3><p>Swoole是一个PHP扩展，使得PHP使用异步的方式执行，就像node一样，而且还能使用socket，为PHP提供了一系列异步IO、事件驱动、并行数据结构功能。具体的安装方法这就不说了，自己谷歌吧。</p>
+<hr>
+<h3 id="3__u73B0_u6709_u7684_u8F6E_u5B50"><a href="#3__u73B0_u6709_u7684_u8F6E_u5B50" class="headerlink" title="3 现有的轮子"></a>3 现有的轮子</h3><p>搜搜github上已有的swoole启动laravel的轮子，找了三个轮子</p>
+<p><a href="https://github.com/scil/LaravelFly" target="_blank" rel="external">scil/LaravelFly</a><br><a href="https://github.com/chongyi/swoole-laravel-framework" target="_blank" rel="external">chongyi/swoole-laravel-framework</a><br><a href="https://github.com/garveen/laravoole" target="_blank" rel="external">garveen/laravoole</a></p>
+<p>用了LaravelFly，听名字感觉感觉挺酷，结果不如人意，实在不喜欢它那种强硬的启动方式。跟Laravel的风格-‘优雅’ 很不搭。于是又想自己写，结果写到一半发现laravoole这个项目有更新，然后启动方式（使用artisan命令，没更新前是用的bash脚本启动），代码风格都很酷，这不就是我想做的东西嘛！</p>
+<hr>
+<p>chongyi/swoole-laravel-framework这个轮子是我在写轮子的时候，作者在微信群里分享的，有兴趣的朋友可以试试，我还没试过。</p>
+<hr>
+<h3 id="4_LARAVOOLE_u4E2D_u7684_u51E0_u4E2A_u6CE8_u610F_u70B9"><a href="#4_LARAVOOLE_u4E2D_u7684_u51E0_u4E2A_u6CE8_u610F_u70B9" class="headerlink" title="4 LARAVOOLE中的几个注意点"></a>4 LARAVOOLE中的几个注意点</h3><p>可以看看<a href="https://github.com/garveen/laravoole" target="_blank" rel="external">作者的文档</a>,我就只总结下我在用的过程中遇到的几个点<br>1 你没法不再使用一下的超全局变量，因为它们是WEB服务器创建的，而一个非热启动的项目使用他们可能会造成变量污染，你可以从Laravel的Request类中拿到你要的数据。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$GLOBALS</span></span><br><span class="line"><span class="variable">$_SERVER</span></span><br><span class="line"><span class="variable">$_REQUEST</span></span><br><span class="line"><span class="variable">$_POST</span></span><br><span class="line"><span class="variable">$_GET</span></span><br><span class="line"><span class="variable">$_FILES</span></span><br><span class="line"><span class="variable">$_ENV</span></span><br><span class="line"><span class="variable">$_COOKIE</span></span><br><span class="line"><span class="variable">$_SESSION</span></span><br></pre></td></tr></table></figure></p>
+<p>2 因为我要开发微信相关的，所以使用了<a href="https://github.com/overtrue/wechat" target="_blank" rel="external">EASYWECHAT</a>这个包，但是这个包的oauth方法使用的是原生的SESSION，所以这边也要改成redis等其它方式去存储session。具体代码如下。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//在你的控制器或者中间件中</span><br><span class="line">public function handle(Request $request, Closure $next)</span><br><span class="line">//省略代码</span><br><span class="line">$redirect = config('app.url') . $request-&gt;getRequestUri();//这个地址要求带着token</span><br><span class="line">              </span><br><span class="line">$options = [</span><br><span class="line">              'app_id' =&gt; config('app.appid'),</span><br><span class="line">              'secret' =&gt; config('app.secret'),</span><br><span class="line">              'oauth' =&gt; [</span><br><span class="line">                  'scopes' =&gt; ['snsapi_userinfo'],</span><br><span class="line">                  'callback' =&gt; $redirect,</span><br><span class="line">              ],</span><br><span class="line">           ];</span><br><span class="line"></span><br><span class="line"> $app = new Application($options);</span><br><span class="line"> //使用laravel session替代原生session</span><br><span class="line"> $app-&gt;oauth-&gt;setRequest($request);</span><br><span class="line"> //省略下面代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3 不支持热启动了，所以每次更新代码后都需要重新启动Laravoole进程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan laravoole restart</span><br></pre></td></tr></table></figure></p>
+<p>如需要支持热启动，请自行谷歌 swoole + inotify，大概原理就是用inotify监控文件变更，如果更新了重启swoole,如果正式环境中还可以自己写个部署脚本，git pull后重启服务等，方法很多不一一列举。</p>
+<h3 id="5__u6109_u5FEB_u7684_u51C6_u5907_u6D4B_u8BD5_u5566"><a href="#5__u6109_u5FEB_u7684_u51C6_u5907_u6D4B_u8BD5_u5566" class="headerlink" title="5 愉快的准备测试啦"></a>5 愉快的准备测试啦</h3><p>测试机子：<br>阿里云<br>centos6.5<br>双核<br>4G<br>无视带宽影响，向本机请求，测试结果如下，测了几次，平均在700RPS左右。原先的只有20多RPS。<br><img src="/2016/12/23/swoole-speed-up-laravel/img1.png" alt="img1.png" title=""><br><img src="/2016/12/23/swoole-speed-up-laravel/img2.png" alt="img2.png" title=""></p>
 
       
     </div>
@@ -287,6 +307,10 @@
           
             <a href="/tags/PHP/" rel="tag">#PHP</a>
           
+            <a href="/tags/SWOOLE/" rel="tag">#SWOOLE</a>
+          
+            <a href="/tags/优化/" rel="tag">#优化</a>
+          
         </div>
       
 
@@ -294,17 +318,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/12/15/php7快速安装/" rel="next" title="php7快速安装">
+                <i class="fa fa-chevron-left"></i> php7快速安装
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/23/swoole-speed-up-laravel/" rel="prev" title="swoole-speed-up-laravel">
-                swoole-speed-up-laravel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -330,8 +350,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/15/php7快速安装/"
-           data-title="php7快速安装" data-url="http://yoursite.com/2016/12/15/php7快速安装/">
+      <div class="ds-thread" data-thread-key="2016/12/23/swoole-speed-up-laravel/"
+           data-title="swoole-speed-up-laravel" data-url="http://yoursite.com/2016/12/23/swoole-speed-up-laravel/">
       </div>
     
   </div>
@@ -440,7 +460,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1__u6DFB_u52A0mirror"><span class="nav-number">1.</span> <span class="nav-text">1 添加mirror</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2_yum__u5B89_u88C5_php7"><span class="nav-number">2.</span> <span class="nav-text">2 yum 安装 php7</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1_Laravel_u7684_u901F_u5EA6_u74F6_u9888_u5728_u54EA_uFF1F"><span class="nav-number">1.</span> <span class="nav-text">1 Laravel的速度瓶颈在哪？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1__u5DF2_u6709_u7684_u4E00_u4E9B_u4F18_u5316_u65B9_u6CD5"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 已有的一些优化方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2__u78C1_u76D8IO_u4E0A_u7684_u74F6_u9888"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 磁盘IO上的瓶颈</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2_Swoole"><span class="nav-number">2.</span> <span class="nav-text">2 Swoole</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3__u73B0_u6709_u7684_u8F6E_u5B50"><span class="nav-number">3.</span> <span class="nav-text">3 现有的轮子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4_LARAVOOLE_u4E2D_u7684_u51E0_u4E2A_u6CE8_u610F_u70B9"><span class="nav-number">4.</span> <span class="nav-text">4 LARAVOOLE中的几个注意点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5__u6109_u5FEB_u7684_u51C6_u5907_u6D4B_u8BD5_u5566"><span class="nav-number">5.</span> <span class="nav-text">5 愉快的准备测试啦</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
