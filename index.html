@@ -241,6 +241,100 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/03/gitlab-pull-request/" itemprop="url">
+                  gitlab-pull-request
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-03T23:20:58+08:00" content="2017-01-03">
+              2017-01-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/03/gitlab-pull-request/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/03/gitlab-pull-request/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GITLAB__u4E2D_u7684_PULL_REQUEST"><a href="#GITLAB__u4E2D_u7684_PULL_REQUEST" class="headerlink" title="GITLAB 中的 PULL REQUEST"></a>GITLAB 中的 PULL REQUEST</h3><p>gitlab貌似没有github，gogs里面的pull request功能，那么如果同步主项目仓库代码到自己的仓库呢?<br>操作步骤如下:<br>1 添加上流：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream URL</span><br></pre></td></tr></table></figure></p>
+<p>2 拉取upstream，这个会创建一个remote的 upstream/master 和 upstream/dev<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure></p>
+<p>3 合并upstream分支dev到 本地dev(当前的本地分支)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge upstream/dev</span><br></pre></td></tr></table></figure></p>
+<p>4 提交本地dev分支到remote</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/23/swoole-speed-up-laravel/" itemprop="url">
                   swoole-speed-up-laravel
                 </a>
@@ -310,6 +404,101 @@
 <p>3 不支持热启动了，所以每次更新代码后都需要重新启动Laravoole进程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan laravoole restart</span><br></pre></td></tr></table></figure></p>
 <p>如需要支持热启动，请自行谷歌 swoole + inotify，大概原理就是用inotify监控文件变更，如果更新了重启swoole,如果正式环境中还可以自己写个部署脚本，git pull后重启服务等，方法很多不一一列举。</p>
 <h3 id="5__u6109_u5FEB_u7684_u51C6_u5907_u6D4B_u8BD5_u5566"><a href="#5__u6109_u5FEB_u7684_u51C6_u5907_u6D4B_u8BD5_u5566" class="headerlink" title="5 愉快的准备测试啦"></a>5 愉快的准备测试啦</h3><p>测试机子：<br>阿里云<br>centos6.5<br>双核<br>4G<br>无视带宽影响，向本机请求，测试结果如下，测了几次，平均在700RPS左右。原先的只有20多RPS。<br><img src="/2016/12/23/swoole-speed-up-laravel/img1.png" alt="img1.png" title=""><br><img src="/2016/12/23/swoole-speed-up-laravel/img2.png" alt="img2.png" title=""></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/15/php7快速安装/" itemprop="url">
+                  php7快速安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T00:47:53+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/php7快速安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/php7快速安装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1__u6DFB_u52A0mirror"><a href="#1__u6DFB_u52A0mirror" class="headerlink" title="1 添加mirror"></a>1 添加mirror</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$    rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-<span class="number">6</span>.noarch.rpm</span><br><span class="line">$    rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm</span><br></pre></td></tr></table></figure>
+<h2 id="2_yum__u5B89_u88C5_php7"><a href="#2_yum__u5B89_u88C5_php7" class="headerlink" title="2 yum 安装 php7"></a>2 yum 安装 php7</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$    yum install php70w</span><br><span class="line">$    yum install php70w-common</span><br><span class="line">$    yum install php70w-fpm</span><br><span class="line">$    yum install php70w-pdo</span><br><span class="line">$    yum install php70w-xml</span><br><span class="line">$    yum install php70w-mbstring</span><br></pre></td></tr></table></figure>
+<p>（因为我跑的是laravel，所以需要以上的一些扩展，其它请自行安装，如果需要其他扩展，请使用yum search php70w）<br>安装完后运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$    service php-fpm restart</span><br><span class="line">$    service nginx restart</span><br></pre></td></tr></table></figure>
+<p>错误日志请查看/var/log/php-fpm/www-error.log</p>
 
           
         
@@ -471,7 +660,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -485,7 +674,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -540,7 +729,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
